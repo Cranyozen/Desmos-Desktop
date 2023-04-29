@@ -58,10 +58,10 @@ const menuTemplate = () => [
             {
                 label: i18n.__("Undo"), accelerator: "CmdOrCtrl+Z",
                 click () {  sendReq("Undo");    }
-            },{
+            }, {
                 label: i18n.__("Redo"), accelerator: "CmdOrCtrl+Shift+Z",
                 click () {  sendReq("Redo");    }
-            },{
+            }, {
                 label: i18n.__("Clear"), accelerator: "CmdOrCtrl+Shift+C",
                 click () {  sendReq("Clear");    }
             }
@@ -268,6 +268,40 @@ async function handleShowSaveDialog(event, args) {
 ipcMain.handle("showSaveDialog", handleShowSaveDialog);
 
 ipcMain.on("PopMenu", (event) => {
-    const menu = Menu.buildFromTemplate(menuTemplate[1]["submenu"]);
+    const menu = Menu.buildFromTemplate([
+        {
+            label: i18n.__("New"),
+            click () {  sendReq("NewFile"); }
+        }, {
+            label: i18n.__("Open"),
+            click () {  sendReq("OpenFile");    }
+        }, {
+            label: i18n.__("Save"),
+            click () {  sendReq("SaveFile");    }
+        }, {
+            label: i18n.__("Save As"),
+            click () {  sendReq("SaveAsFile");  }
+        }, {
+            type: "separator"
+        }, {
+            label: i18n.__("Export Image"),
+            click () {  sendReq("ExportImage"); }
+        }, {
+            label: i18n.__("Undo"),
+            click () {  sendReq("Undo");    }
+        }, {
+            label: i18n.__("Redo"),
+            click () {  sendReq("Redo");    }
+        }, {
+            label: i18n.__("Clear"),
+            click () {  sendReq("Clear");    }
+        }
+    ]);
     menu.popup();
 });
+
+async function handleReadI18n(event, key) {
+    return i18n.__(key);
+}
+
+ipcMain.handle("ReadI18n", handleReadI18n);

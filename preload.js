@@ -1,4 +1,5 @@
-const { contextBridge, ipcRenderer } = require("electron")
+const { contextBridge, ipcRenderer } = require("electron");
+const i18n = require("i18n");
 
 contextBridge.exposeInMainWorld("func", {
   onNewFile: (callback) => ipcRenderer.on("NewFile", callback),
@@ -18,5 +19,6 @@ contextBridge.exposeInMainWorld("func", {
   writeFile: (data) => ipcRenderer.invoke("WriteFile", data),
   readFile: (path) => ipcRenderer.invoke("ReadFile", path),
   popMenu: () => ipcRenderer.send("PopMenu"),
+  readI18n: (key) => ipcRenderer.invoke("ReadI18n", key),
 });
 console.log("Preload.js loaded.");

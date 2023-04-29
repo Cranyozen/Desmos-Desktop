@@ -5,7 +5,7 @@
   "repository": "git@github.com:LYF511/Desmos-Desktop.git",
   "author": "LYF511",
   "license": "MIT",
-  "description": "none",
+  "description": "An offline client for Desmos.",
   "private": false,
   "devDependencies": {
     "electron": "^24.1.3",

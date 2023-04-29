@@ -11,5 +11,7 @@
 	"Clear": "Clear",
 	"View": "View",
 	"Help": "Help",
-	"More": "More"
+	"More": "More",
+	"AskSaveTips": "Do you want to save the current document?",
+	"AskSaveTitle": "Ask"
 }

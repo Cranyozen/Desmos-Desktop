@@ -4,12 +4,14 @@
 	"Open": "打开",
 	"Save": "保存",
 	"Save As": "另存为",
-	"Export Image": "截图导出",
+	"Export Image": "导出截图",
 	"Edit": "编辑",
 	"Undo": "撤销",
 	"Redo": "重做",
 	"Clear": "清空",
 	"View": "视图",
 	"Help": "帮助",
-	"More": "更多"
+	"More": "更多",
+	"AskSaveTips": "是否保存当前文件？",
+	"AskSaveTitle": "询问"
 }
