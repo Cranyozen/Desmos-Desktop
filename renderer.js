@@ -144,7 +144,7 @@ async function exitApp() {
 }
 
 window.func.onNewFile((event, arg) => newFile());
-window.func.onOpenFile((event, arg) => openFile());
+window.func.onOpenFile((event, path) => openFile(path));
 window.func.onSaveFile((event, arg) => saveFile());
 window.func.onSaveAsFile((event, arg) => saveAsFile());
 window.func.onExportImage((event, arg) => exportImage());

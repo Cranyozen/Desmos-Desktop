@@ -140,7 +140,7 @@ const createWindow = () => {
         height: height,
         x: x,
         y: y,
-        icon: path.join(__dirname, "./src/favicon.ico"),
+        icon: path.join(__dirname, "./src/desmos.png"),
         webPreferences: {
             nodeIntegration: true,
             // contextIsolation: false,
@@ -211,7 +211,6 @@ app.on("window-all-closed", () => {
     }
 });
 
-
 ipcMain.on("Exit", (event, arg) => {
     // https://github.com/sindresorhus/electron-store
     safeExit=true;
@@ -228,7 +227,12 @@ ipcMain.on("ToInit", (event, arg) => {
     if (filePath != undefined && filePath != null && filePath != "") {
         event.reply("OpenFile", filePath);
     } else {
-        event.reply("NewFile");
+        // do not open during testing
+        if (process.argv.length >= 2 && process.argv[process.argv.length-1] != ".") {
+            event.reply("OpenFile", process.argv[process.argv.length-1]);
+        } else {
+            event.reply("NewFile");
+        }
     }
 });
 
