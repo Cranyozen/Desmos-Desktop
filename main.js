@@ -115,7 +115,7 @@ if (process.platform === "darwin") {
       {type: "separator"},
       {role: "quit"}
     ]
-  })
+  });
 }
 
 
@@ -202,18 +202,18 @@ const createWindow = () => {
 
 
 // Run create window
-app.on("ready", createWindow)
+app.on("ready", createWindow);
 
 // Quit when all windows are closed
 app.on("window-all-closed", () => {
-    if(process.platform != "darwin"){
+    if(process.platform != "darwin") {
         app.quit();
     }
 });
 
 ipcMain.on("Exit", (event, arg) => {
     // https://github.com/sindresorhus/electron-store
-    safeExit=true;
+    safeExit = true;
     app.quit();
 });
 

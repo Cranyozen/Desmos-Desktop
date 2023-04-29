@@ -18,5 +18,5 @@ contextBridge.exposeInMainWorld("func", {
   writeFile: (data) => ipcRenderer.invoke("WriteFile", data),
   readFile: (path) => ipcRenderer.invoke("ReadFile", path),
   popMenu: () => ipcRenderer.send("PopMenu"),
-})
+});
 console.log("Preload.js loaded.");

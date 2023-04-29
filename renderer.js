@@ -46,41 +46,41 @@ async function newFile() {
     if (!canceled) return;
 
     calculator.setBlank();
-    setStateData({filePath: null, lastState: null})
+    setStateData( { filePath: null, lastState: null } );
     // updateTitle();
 }
 
 
 async function openFile(filePath=null) {
-    if (!(await askIfSaveIfNeed())) return;
+    if (!(await askIfSaveIfNeed())) { return; }
     if (!filePath) {
-        const result = await window.func.showOpenDialog({ filters: file_filter });
+        const result = await window.func.showOpenDialog( {filters: file_filter} );
         if (!result.canceled && result.filePaths.length > 0) {
             filePath = result.filePaths[0];
-        } else return;
+        } else { return; }
     }
 
     const content = await window.func.readFile(filePath);
     setCaculatorState(content);
-    setStateData({filePath: filePath, lastState: JSON.parse(content)})
+    setStateData( { filePath: filePath, lastState: JSON.parse(content) } );
 }
 
 
 async function saveFile() {
-    if (isSaved()) return;
-    if(!StateData.filePath){
+    if (isSaved()) { return; }
+    if(!StateData.filePath) {
         await saveAsFile();
         return;
     }
     const state = calculator.getState();
     const state_content = JSON.stringify(state);
-    setStateData({filePath: StateData.filePath, lastState: state});
+    setStateData( { filePath: StateData.filePath, lastState: state } );
     saveText(state_content, StateData.filePath);
 }
 
 
 async function saveAsFile() {
-    const result = await window.func.showSaveDialog({ filters: file_filter });
+    const result = await window.func.showSaveDialog( { filters: file_filter } );
     if (!result.canceled && result.filePath != undefined) {
         setStateData({filePath: result.filePath, lastState: StateData.lastState});
         saveFile();
@@ -92,7 +92,7 @@ async function exportImage() {
         targetPixelRatio: 2
     });
     var image_data = image.replace(/^data:image\/png;base64,/, "");
-    const result = await window.func.showSaveDialog({filters: [ {name: "png", extensions: ["png"] }]})
+    const result = await window.func.showSaveDialog({filters: [ {name: "png", extensions: ["png"] }]});
     if (!result.canceled && result.filePath != undefined) {
         window.func.writeFile({path: result.filePath, content: image_data, options: "base64"});
     }
@@ -100,30 +100,26 @@ async function exportImage() {
 
 
 function isStateNull() {
-    if (StateData.lastState == null && calculator.getState().expressions.list[0].latex === undefined)
-        return true;
-    else return false;
+    if (StateData.lastState == null && calculator.getState().expressions.list[0].latex === undefined) { return true; }
+    else { return false; }
 }
 
 
 function isSaved() {
-    if (isStateNull()) return true;
-    if (!StateData.filePath || !StateData.lastState) {
-        return false;
-    } else {
+    if (isStateNull()) { return true; }
+    if (!StateData.filePath || !StateData.lastState) { return false; }
+    else {
         // console.log(JSON.stringify(calculator.getState()));
         // console.log(StateData.lastState)
         // Only compare expressions
         // MAKE SURE STATE IS OBJECT!!!
-        if (JSON.stringify(calculator.getState().expressions) == JSON.stringify(StateData.lastState.expressions))
-            return true;
-        else
-            return false;
+        if (JSON.stringify(calculator.getState().expressions) == JSON.stringify(StateData.lastState.expressions)) { return true; }
+        else { return false; }
     }
 }
 
 async function askIfSaveIfNeed(){
-    if(isSaved()) return true;
+    if(isSaved()) { return true; }
     const result = await window.func.showMessageBox({
         message: "Do you want to save the current document?",
         type: "question",
@@ -132,8 +128,9 @@ async function askIfSaveIfNeed(){
     if (result.response == 0) {
         await saveFile();
         return true;
-    } else if (result.response == 1) return true;
-    else return false;
+    } else
+        if (result.response == 1) { return true; }
+        else { return false; }
 }
 
 async function exitApp() {
