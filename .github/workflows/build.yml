@@ -13,6 +13,8 @@ jobs:
 
     - name: Install and Build
       run: yarn && yarn dist
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload File
       uses: actions/upload-artifact@v2
