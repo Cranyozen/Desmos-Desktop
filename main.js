@@ -228,7 +228,7 @@ ipcMain.on("ToInit", (event, arg) => {
         event.reply("OpenFile", filePath);
     } else {
         // do not open during testing
-        if (process.argv.length >= 2 && process.argv[process.argv.length-1] != ".") {
+        if (process.argv.length >= 2 && process.argv[process.argv.length-1].endsWith(".dmdf")) {
             event.reply("OpenFile", process.argv[process.argv.length-1]);
         } else {
             event.reply("NewFile");
