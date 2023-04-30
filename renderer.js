@@ -119,7 +119,6 @@ function isSaved() {
 }
 
 async function askIfSaveIfNeed(){
-    console.log(await window.func.readI18n("AskSaveTips"));
     if(isSaved()) { return true; }
     const result = await window.func.showMessageBox({
         message: await window.func.readI18n("AskSaveTips"),
