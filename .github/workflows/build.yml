@@ -1,23 +1,21 @@
 name: Build Electron App
 
 on:
-  push:
-    tags:
-      - v*
+  push
 
 jobs:
   build-on-windows:
 
-  runs-on: windows-latest
+    runs-on: windows-latest
 
-  steps:
-  - uses: actions/checkout@v3
+    steps:
+    - uses: actions/checkout@v3
 
-  - name: Install and Build
-    run: yarn && yarn dist
+    - name: Install and Build
+      run: yarn && yarn dist
 
-  - name: Upload File
-    uses: actions/upload-artifact@v2
-    with:
-      name: windows
-      path: dist/*.exe
+    - name: Upload File
+      uses: actions/upload-artifact@v2
+      with:
+        name: windows
+        path: dist/*.exe
