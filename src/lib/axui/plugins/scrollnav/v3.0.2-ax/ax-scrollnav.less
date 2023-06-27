@@ -1,0 +1,146 @@
+/*!
+ *Last modified: 2022-09-06 15:56:28
+ *名称: ax-scrollnav.css
+ *简介: scrollnav的css文件
+ *用法: scrollnav.init('#id',{参数})
+ *版本: v3.0.2
+ *演示: https://www.axui.cn/v2.0/ax-scrollnav.php
+ *客服: 3217728223@qq.com
+ *交流: QQ群952502085
+ *作者: AXUI团队
+ */
+@charset "utf-8";
+@import (optional, reference) "../../../css/ax-fun.less";
+
+.ax-scrollnav {}
+
+.ax-scrollnav-v {
+  font-size: 1.2rem;
+  background-color: rgba(255, 255, 255, .1);
+  padding: @gutter-md;
+  line-height: @lineheight-body;
+  max-height: calc(100vh - 12.0rem);
+  overflow: inherit;
+  position: fixed;
+  top: 6.0rem;
+  right: @gutter-md;
+  z-index: 610;
+}
+
+.ax-scrollnav-v .ax-close {
+  color: @color-primary;
+  width: @height-input;
+  height: @height-input;
+  line-height: @height-input;
+  text-align: center;
+  border-radius: @height-input;
+  border: 1px solid @color-border;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-sizing: border-box;
+  .tranNormal();
+  position: absolute;
+  right: 0;
+  bottom: calc(-@height-input - @break-md);
+}
+
+.ax-scrollnav-v.ax-hide {
+  border-color: transparent;
+  background: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.ax-scrollnav-v.ax-hide .ax-scrollnav {
+  width: 0;
+  visibility: hidden;
+}
+
+.ax-scrollnav-v.ax-hide .ax-close {
+  color: #fff;
+  border-width: 0;
+  background-color: @color-primary;
+  transform: rotate(180deg);
+}
+
+.ax-scrollnav-v:not(.ax-hide) .ax-close:hover {
+  border-color: @color-primary;
+  background-color: @color-primary-bg;
+}
+
+.ax-scrollnav-v ol {}
+
+.ax-scrollnav-v li {
+  position: relative;
+  padding-left: @gutter-md;
+  white-space: nowrap;
+  border-left: 1px solid @color-ignbg;
+}
+
+.ax-scrollnav-v li.ax-active>a {
+  color: @color-primary;
+}
+
+.ax-scrollnav-v li:before {
+  content: '';
+  height: @lineheight-body;
+  width: 1px;
+  position: absolute;
+  left: -0.1rem;
+  top: 0;
+}
+
+.ax-scrollnav-v li.ax-active:before {
+  background-color: @color-primary;
+}
+
+.ax-scrollnav-h {
+  background-color: #fff;
+  line-height: @height-input;
+  text-align: center;
+  position: relative;
+  z-index: 4;
+}
+
+.ax-scrollnav-h ol {}
+
+.ax-scrollnav-h li {
+  margin: 0 @gutter-md;
+  white-space: nowrap;
+  display: inline-block;
+  position: relative;
+}
+
+.ax-scrollnav-h li.ax-active>a {
+  color: @color-primary;
+}
+
+.ax-scrollnav-h li:before {
+  content: '';
+  height: .2rem;
+  width: 100%;
+  .tranNormal();
+  position: absolute;
+  bottom: 0;
+}
+
+.ax-scrollnav-h li.ax-active:before {
+  background-color: @color-primary;
+}
+
+/*Telephone & iPad*/
+@media screen and (max-width: 900px) {
+  .ax-scrollnav-v {
+    background-color: rgba(255, 255, 255, 0.9);
+    .border-outer();
+    border-radius: @radius;
+    top: auto;
+    bottom: @gutter-md;
+  }
+
+  .ax-scrollnav-v .ax-close {
+    top: calc(-@height-input - @gutter-md);
+    bottom: auto;
+  }
+
+
+}

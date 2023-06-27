@@ -1,0 +1,120 @@
+@charset "utf-8";
+/*!
+ *Last modified: 2022-09-06 15:56:28
+ *名称: ax-scrollnav.css
+ *简介: scrollnav的css文件
+ *用法: scrollnav.init('#id',{参数})
+ *版本: v3.0.2
+ *演示: https://www.axui.cn/v2.0/ax-scrollnav.php
+ *客服: 3217728223@qq.com
+ *交流: QQ群952502085
+ *作者: AXUI团队
+ */
+.ax-scrollnav-v {
+  font-size: 1.2rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1.4rem;
+  line-height: 2.8rem;
+  max-height: calc(100vh - 12rem);
+  overflow: inherit;
+  position: fixed;
+  top: 6rem;
+  right: 1.4rem;
+  z-index: 610;
+}
+.ax-scrollnav-v .ax-close {
+  color: #198cff;
+  width: 3.8rem;
+  height: 3.8rem;
+  line-height: 3.8rem;
+  text-align: center;
+  border-radius: 3.8rem;
+  border: 1px solid #ebebeb;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-sizing: border-box;
+  transition: all 200ms linear;
+  position: absolute;
+  right: 0;
+  bottom: calc(-3.8rem - 1.4rem);
+}
+.ax-scrollnav-v.ax-hide {
+  border-color: transparent;
+  background: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+.ax-scrollnav-v.ax-hide .ax-scrollnav {
+  width: 0;
+  visibility: hidden;
+}
+.ax-scrollnav-v.ax-hide .ax-close {
+  color: #fff;
+  border-width: 0;
+  background-color: #198cff;
+  transform: rotate(180deg);
+}
+.ax-scrollnav-v:not(.ax-hide) .ax-close:hover {
+  border-color: #198cff;
+  background-color: #f0f7ff;
+}
+.ax-scrollnav-v li {
+  position: relative;
+  padding-left: 1.4rem;
+  white-space: nowrap;
+  border-left: 1px solid #f0f0f0;
+}
+.ax-scrollnav-v li.ax-active > a {
+  color: #198cff;
+}
+.ax-scrollnav-v li:before {
+  content: '';
+  height: 2.8rem;
+  width: 1px;
+  position: absolute;
+  left: -0.1rem;
+  top: 0;
+}
+.ax-scrollnav-v li.ax-active:before {
+  background-color: #198cff;
+}
+.ax-scrollnav-h {
+  background-color: #fff;
+  line-height: 3.8rem;
+  text-align: center;
+  position: relative;
+  z-index: 4;
+}
+.ax-scrollnav-h li {
+  margin: 0 1.4rem;
+  white-space: nowrap;
+  display: inline-block;
+  position: relative;
+}
+.ax-scrollnav-h li.ax-active > a {
+  color: #198cff;
+}
+.ax-scrollnav-h li:before {
+  content: '';
+  height: 0.2rem;
+  width: 100%;
+  transition: all 200ms linear;
+  position: absolute;
+  bottom: 0;
+}
+.ax-scrollnav-h li.ax-active:before {
+  background-color: #198cff;
+}
+/*Telephone & iPad*/
+@media screen and (max-width: 900px) {
+  .ax-scrollnav-v {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ebebeb;
+    border-radius: 0.3rem;
+    top: auto;
+    bottom: 1.4rem;
+  }
+  .ax-scrollnav-v .ax-close {
+    top: calc(-3.8rem - 1.4rem);
+    bottom: auto;
+  }
+}

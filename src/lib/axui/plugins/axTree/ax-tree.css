@@ -1,0 +1,283 @@
+@charset "utf-8";
+/*!
+ *Last modified: 2023-06-11 12:34:54
+ *名称: ax-tree.css
+ *简介: tree树菜单的css文件
+ *用法: new axTree('#id',{参数})
+ *版本: v1.0.8
+ *演示: https://www.axui.cn/v2.0/ax-tree.php
+ *客服: 3217728223@qq.com
+ *交流: QQ群952502085
+ *作者: AXUI团队
+ */
+.ax-tree ul {
+  display: none;
+}
+.ax-tree .ax-node {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 2.8rem;
+  transition: all 200ms linear;
+}
+.ax-tree .ax-node:hover {
+  background-color: #f5f5f5;
+}
+.ax-tree [arrow] {
+  text-align: center;
+  width: 2.2rem;
+  height: 2.8rem;
+  line-height: 2.8rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 1.4rem;
+  position: relative;
+}
+.ax-tree [arrow]:not(.ax-none) {
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+.ax-tree [arrow]:not(.ax-none).ax-different {
+  transform: none!important;
+  transition: none!important;
+}
+.ax-tree [arrow].ax-expand {
+  background-image: url(icons/expand.svg);
+}
+.ax-tree [arrow].ax-collapse {
+  background-image: url(icons/collapse.svg);
+}
+.ax-tree [arrow][loading]:before {
+  content: "";
+  display: inline-block;
+  width: 1.4rem;
+  height: 1.4rem;
+  background: var(--load) no-repeat scroll center;
+  background-size: cover;
+}
+.ax-tree [check] {
+  color: #666;
+  width: 2.2rem;
+  height: 2.2rem;
+  line-height: 2.2rem;
+  text-align: center;
+  cursor: pointer;
+  background-position: center;
+  background-size: 1.4rem;
+  background-repeat: no-repeat;
+}
+.ax-tree [check].ax-checkbox-unchecked {
+  background-image: url(icons/checkbox-unchecked.svg);
+}
+.ax-tree [check].ax-checkbox-checking {
+  background-image: url(icons/checkbox-checking.svg);
+}
+.ax-tree [check].ax-checkbox-checked {
+  background-image: url(icons/checkbox-checked.svg);
+}
+.ax-tree [check].ax-radio-unchecked {
+  background-image: url(icons/radio-unchecked.svg);
+}
+.ax-tree [check].ax-radio-checking {
+  background-image: url(icons/radio-checking.svg);
+}
+.ax-tree [check].ax-radio-checked {
+  background-image: url(icons/radio-checked.svg);
+}
+.ax-tree [legend] {
+  color: #666;
+  width: 2.2rem;
+  height: 2.2rem;
+  line-height: 2.2rem;
+  text-align: center;
+  background-position: center;
+  background-size: 1.4rem;
+  background-repeat: no-repeat;
+}
+.ax-tree [legend].ax-fold {
+  background-image: url(icons/fold.svg);
+}
+.ax-tree [legend].ax-unfold {
+  background-image: url(icons/unfold.svg);
+}
+.ax-tree [legend].ax-childless {
+  background-image: url(icons/childless.svg);
+}
+.ax-tree [label] {
+  line-height: 2.2rem;
+  padding: 0 0.4rem;
+  margin-right: 0.4rem;
+  white-space: nowrap;
+  position: relative;
+  cursor: pointer;
+}
+/*keyword highlighting搜索关键字高亮*/
+.ax-tree [label] i {
+  color: #ff8400;
+}
+.ax-tree [toolsAction="hover"] [tools],
+.ax-tree [toolsAction="click"] [tools] {
+  display: none;
+}
+.ax-tree [toolsAction="hover"]:hover [tools] {
+  display: inline-block;
+}
+.ax-tree [tools] {
+  height: 2.2rem;
+  line-height: 2.2rem;
+}
+.ax-tree [tools] i {
+  color: #666;
+  width: 2.2rem;
+  border-radius: 0.3rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+.ax-tree [tools] i:hover {
+  color: #fff;
+  background-color: #198cff;
+}
+.ax-tree li select {
+  width: 9.2rem;
+  height: 2.2rem;
+  line-height: 2.2rem;
+  padding: 0 0 0 0.4rem;
+}
+.ax-tree .ax-node input[type*='text'] {
+  width: 9.2rem;
+  height: 2.2rem;
+  line-height: 2.2rem;
+  padding: 0 0.4rem;
+}
+.ax-tree [indent] i {
+  width: 2.2rem;
+}
+/*edit编辑*/
+.ax-tree [editing] [label] {
+  padding: 0;
+}
+.ax-tree [editing] [tools] {
+  position: absolute;
+  left: -100000px;
+}
+/*expand展开*/
+.ax-tree [expanded="true"] > [arrow]:not(.ax-none) {
+  color: #198cff;
+  transform: rotate(90deg);
+}
+/*checked勾选*/
+.ax-tree [checked="true"] [check] {
+  color: #198cff;
+}
+/*selected已选择*/
+.ax-tree [selected]:not([editing]) [label] {
+  color: #fff;
+  border-radius: 0.3rem;
+  background: #198cff;
+}
+/*disabled禁止勾选*/
+.ax-tree [disabled] [check],
+.ax-tree [disabled] [legend] {
+  cursor: not-allowed;
+  color: #b3b3b3;
+}
+/*draggable可拖拽*/
+.ax-tree [draggable="true"] > div:hover {
+  cursor: grab;
+}
+/*readonly只读，禁止编辑*/
+.ax-tree [readonly] [tools] i,
+.ax-tree [readonly] [tools] i:hover {
+  cursor: not-allowed;
+  color: #b3b3b3;
+  background: transparent;
+}
+/*focus聚焦，新增和拖拽成为焦点，如果本身是已选择状态则不做改变*/
+.ax-tree .ax-node:focus:not([selected="true"]) [label] {
+  color: #198cff;
+}
+/*line节点连线*/
+.ax-tree[line] [arrow].ax-none:before,
+.ax-tree[line] [arrow].ax-none:after {
+  content: '';
+  width: calc(2.2rem / 2);
+  height: calc(2.8rem / 2);
+  position: absolute;
+  right: 0;
+}
+.ax-tree[line] [arrow].ax-none:before {
+  box-shadow: inset 1px -1px 0 0 #999;
+  top: 0;
+}
+.ax-tree[line] [arrow].ax-none:after {
+  box-shadow: inset 1px 0 0 0 #999;
+  bottom: 0;
+}
+.ax-tree[line] ul > li:last-child > div [arrow].ax-none:after {
+  display: none;
+}
+.ax-tree[line] > li:first-child > div [arrow].ax-none:before {
+  box-shadow: inset 0 -1px 0 0 #999;
+}
+.ax-tree[line] > li:last-child > div [arrow].ax-none:after {
+  display: none;
+}
+.ax-tree[line] ul > li [indent] {
+  line-height: 2.8rem;
+  position: relative;
+}
+.ax-tree[line] ul > li [indent] i {
+  line-height: 2.8rem;
+  height: 2.8rem;
+  position: relative;
+}
+.ax-tree[line] > li [indent] i:before,
+.ax-tree[line] ul > li [indent] i:before {
+  content: '';
+  width: calc(2.2rem / 2);
+  height: 100%;
+  box-shadow: inset 1px 0 0 0 #999;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+/*drag拖拽节点*/
+.ax-tree .ax-dragging > div [label] {
+  color: #198cff;
+  background: transparent;
+}
+.ax-tree .ax-dragging > div [label]:before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-width: 4px;
+  border-style: solid;
+  border-color: transparent transparent transparent #198cff;
+  position: absolute;
+  left: -4px;
+  display: none;
+}
+.ax-tree .ax-dragging[insert="up"] > div [label]:before {
+  display: block;
+  top: -6px;
+}
+.ax-tree .ax-dragging[insert="down"] > div [label]:before {
+  display: block;
+  bottom: -6px;
+}
+.ax-tree .ax-dragging[insert="child"] > div [label]:before {
+  display: block;
+  top: 7px;
+}
+.ax-tree .ax-dragging[insert="child"] > div [label]:after {
+  content: '';
+  border: 1px solid #198cff;
+  border-radius: 0.3rem;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
